@@ -1,0 +1,54 @@
+﻿.title_content{
+    font-family: 'Sniglet';
+    text-align: center;
+}
+
+.div_content_prenoms {
+    display: flex;
+    justify-content: center;
+}
+
+.LblPrenom{
+    margin-top: 1px;
+}
+
+.div_content_nom {
+    display: flex;
+    justify-content: center;
+}
+
+.LblNom{
+    margin-top: 1px;
+}
+
+.div_content_mail {
+    display: flex;
+    justify-content: center;
+}
+
+.LblMail {
+    margin-top: 1px;
+}
+
+.info_allergenes{
+    text-align: center;
+}
+
+.div_content_session {
+    display: flex;
+    justify-content: center;
+}
+
+.LblSession {
+    margin-top: 1px;
+}
+
+.div_content_allergenes {
+    display: flex;
+    justify-content: center;
+}
+
+.Btn_Create{
+    display: flex;
+    margin: auto;
+}

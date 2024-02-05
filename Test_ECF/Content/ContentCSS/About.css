@@ -1,0 +1,31 @@
+﻿.img_wrapper {
+    position: relative;
+}
+
+.welcome-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transform: rotateY(180deg);
+}
+.content {
+    position: absolute;
+    top: 5em;
+    left: 5em;
+    border-radius: 20px;
+    background-color: blanchedalmond;
+    padding: 0.25em 0.5em;
+    color: darkslategray;
+    text-shadow: 6px 6px 6px grey;
+    font-size: 2em;
+}
+
+.p_content {
+    position: absolute;
+    top: 20em;
+    left: 5em;
+    border-radius: 20px;
+    background-color: blanchedalmond;
+    padding: 0.25em 0.5em;
+    color: darkslategray;
+}

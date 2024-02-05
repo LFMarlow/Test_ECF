@@ -1,0 +1,58 @@
+﻿.title_content {
+    font-family: 'Sniglet';
+    text-align: center;
+}
+
+.div_content_title_recipe {
+    display: flex;
+    justify-content: center;
+}
+
+.LblTitleRecipe {
+    margin-top: 1px;
+}
+
+.div_content_description {
+    display: flex;
+    justify-content: center;s
+}
+
+.LblDescription {
+    margin-top: 1px;
+}
+
+.div_content_Allergenes {
+    display: flex;
+    justify-content: center;
+}
+
+.LblAllergenes {
+    margin-top: 1px;
+}
+
+.div_content_ingredients {
+    display: flex;
+    justify-content: center;
+}
+
+.LblIngredients {
+    margin-top: 1px;
+}
+
+.div_content_etapes {
+    display: flex;
+    justify-content: center;
+}
+
+.LblEtapes {
+    margin-top: 1px;
+}
+
+.div_content_time {
+    display: flex;
+    justify-content: center;
+}
+
+.Lbltime {
+    margin-top: 1px;
+}

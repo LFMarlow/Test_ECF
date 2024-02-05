@@ -1,0 +1,54 @@
+﻿.section_content_title{
+    background-color: #ea7068;
+    font-family: 'Sniglet';
+    text-align: center;
+    color: white;
+}
+
+.bilan_img{
+    margin-left: 150px;
+}
+
+.titleLeft {
+    margin-left: 110px;
+    font-family: 'Sniglet';
+    color: #ea7068;
+}
+
+.section_content_left{
+    width: 50%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.section_content_right{
+    width: 50%;
+    float: right;
+    margin-top: -310px;
+}
+
+.titleRight {
+    margin-left: 110px;
+    font-family: 'Sniglet';
+    color: #ea7068;
+}
+
+.bilan_img_right {
+    margin-left: 150px;
+}
+
+.section_content_right {
+    width: 50%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.section_footer_title {
+    background-color: #ea7068;
+    font-family: 'Sniglet';
+    text-align: center;
+    color: white;
+}
+
+.div_content_footer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+

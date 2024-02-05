@@ -1,0 +1,106 @@
+﻿.img_content{
+    object-fit: cover;
+    width: 100%;
+    display: flex;
+    transform: rotateZ(180deg);
+}
+
+.class_content{
+    position: absolute;
+    top: 3em;
+    left: 16em;
+    border-radius: 20px;
+    background-color: #ea7068;
+    padding: 0.25em 0.5em;
+    color: white;
+    font-size: 2em;
+    font-family: 'Sniglet';
+}
+
+.title_default{
+    position: relative;
+    top: 0.2em;
+}
+
+.recipes_title {
+    font-family: 'Sniglet';
+    color: #ea7068;
+    left: 18.5em;
+    position: relative;
+}
+
+.recipes_wrapper{
+    position: relative;
+}
+
+.recipes1_title {
+    position: absolute;
+    text-shadow: 6px 6px 6px black;
+    top: 5%;
+    left: 2%;
+    text-decoration: black;
+    margin: 0.5em;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Sniglet';
+}
+
+.recipes1_img{
+    margin: 0.5em;
+    width: 30%;
+    max-height: 30%;
+    border-radius: 15px;
+    display: flex;
+}
+
+.see_recipe {
+    position: relative;
+    bottom: 50px;
+    left: 90px;
+    background-color: #ea7068;
+    color: whitesmoke;
+    padding: 0.25em 1em;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.recipes_wrapper2 {
+    position: relative;
+    margin-left: 456px;
+    margin-top: -303px;
+    width: 100%;
+}
+
+.recipes2_title {
+    position: absolute;
+    text-shadow: 6px 6px 6px black;
+    top: 5%;
+    left: 1%;
+    text-decoration: black;
+    margin: 0.5em;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Sniglet';
+}
+
+.recipes_wrapper3 {
+    position: relative;
+    margin-left: 925px;
+    margin-top: -303px;
+    width: 100%;
+}
+
+.recipes3_title {
+    position: absolute;
+    text-shadow: 6px 6px 6px black;
+    top: 5%;
+    left: 3%;
+    text-decoration: black;
+    margin: 0.5em;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Sniglet';
+}

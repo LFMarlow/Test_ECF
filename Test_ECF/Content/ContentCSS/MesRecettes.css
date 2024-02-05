@@ -1,0 +1,40 @@
+﻿.recipes_title {
+    position: absolute;
+    text-shadow: 6px 6px 6px black;
+    text-decoration: black;
+    margin: 0.5em;
+    color: #ea7068;
+    font-weight: bold;
+    font-size: 1em;
+    font-family: 'Sniglet';
+}
+
+.recipes_wrapper {
+    position: relative;
+}
+
+.recipes1_img {
+    margin: 0.5em;
+    width: 30%;
+    max-height: 30%;
+    border-radius: 15px;
+    display: flex;
+}
+
+.title_content {
+    position: relative;
+    top: 0.2em;
+    text-align: center;
+    font-family: 'Sniglet';
+}
+
+.see_recipe {
+    position: relative;
+    bottom: 50px;
+    left: 90px;
+    background-color: #ea7068;
+    color: whitesmoke;
+    padding: 0.25em 1em;
+    border-radius: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,68 @@
+﻿body {
+}
+
+#btnInscr{
+    margin-left: 450px;
+}
+
+footer{
+    margin-left: 500px;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+}
+
+#LblNomUsers {
+    color: white;
+    margin-left: 250px;
+    margin-top: 0.5em;
+}
+
+#LblPrenomUsers {
+    color: white;
+    margin-top: 0.5em;
+}
+
+#ul_footer {
+    display: contents;
+}
+
+#li_footer1 {
+    padding-right: 50px
+}
+
+#div_content_footer{
+    margin-left: -170px;
+}
+
+#h2_footer{
+    margin-left: 60px;
+    font-family: 'Hurricane', Arial, sans-serif;
+}
+
+.photo_login{
+    width: 2em;
+    height: 2em;
+    margin-left: 500px;
+    margin-top: 5px;
+}
+
+.nav-link{
+    color: black;
+}
+
+.navbar{
+    background-color: #ea7068;
+}
+
+.photo_connect {
+    width: 2em;
+    height: 2em;
+    margin-top: 0.5em;
+}
+
+.mon_compte{
+    margin-left: 350px;
+}

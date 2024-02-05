@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Test_ECF.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandrine Coupart - Diététicienne Nutritionniste en ligne</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/Content/ContentCSS/Default.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Hurricane" rel="stylesheet" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
+            <div class="container">
+                <a style="font-family: Hurricane, cursive; font-size: 2em" color="black" class="navbar-brand" runat="server" href="~/">Sandrine Coupart</a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Activer/désactiver la navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">À propos de</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Mes-Services">Mes Services</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/MesRecettes">Recettes</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Me Contacter</a></li>
+                        <%if (!Convert.ToBoolean(Session["EstConnecte"]))
+                            { %>
+                                <a href="/Connexion"><img src="Content/ContentIMG/connexion.png" class="photo_login"/></a>
+                        <%}
+                          else 
+                          { %>
+                                <li class="nav-item"><a class="nav-link mon_compte" runat="server" href="~/Mon-Compte">Mon Compte</a></li>
+                          <%}%>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <h2 id="h2_footer">Sandrine Coupart</h2>
+                <div id="div_content_footer" class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1" id="ul_footer">
+                        <li class="nav-item" id="li_footer1"--><a class="nav-link" runat="server" href="~/">Accueil</a></li>
+                        <hr />
+                        <li class="nav-item" id="li_footer1"--><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <br />
+                        <li class="nav-item" id="li_footer1"--><a class="nav-link" runat="server" href="~/About">A Propos</a></li>
+                        <br />
+                        <li class="nav-item" id="li_footer1"--><a class="nav-link" runat="server" href="~/Politique-de-confidentialite">Politque de confidentialité</a></li>
+                        <br />
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/MentionsLegal">Mentions Légal</a></li>
+                    </ul>
+                </div>
+                <p>&copy; <%: DateTime.Now.Year %> - Diététicienne Nutritionniste en ligne.</p>
+            </footer>
+        </div>
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>

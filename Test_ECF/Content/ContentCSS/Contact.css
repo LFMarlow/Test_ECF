@@ -1,0 +1,58 @@
+﻿.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleContact {
+    font-family: 'Sniglet';
+    color: #ea7068;
+    text-align: center;
+}
+
+
+.TxtBoxNom{
+    font-size: 1em;
+    border-radius: 10px;
+    border-color: lightgray;
+    width: 100%;
+}
+
+.TxtBoxPrenom {
+    font-size: 1em;
+    border-radius: 10px;
+    border-color: lightgray;
+    width: 100%;
+}
+
+.TxtBoxMail {
+    font-size: 1em;
+    border-radius: 10px;
+    border-color: lightgray;
+    width: 100%;
+}
+
+.TxtBoxSujet {
+    font-size: 1em;
+    border-radius: 10px;
+    border-color: lightgray;
+    width: 100%;
+}
+
+.TxtBoxArea1{
+    height: 10em;
+    resize: none;
+    font-size: 1em;
+    border-radius: 10px;
+    width: -webkit-fill-available;
+}
+
+.BtnSend{
+    padding: 0.5em 0;
+    background-color: #ea7068;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    width: 10%;
+}
