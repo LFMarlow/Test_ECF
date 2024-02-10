@@ -9,12 +9,19 @@
             <h2><asp:Label ID="LblDDL" runat="server" Text="Choisir la Recette que vous voulez voir"></asp:Label></h2>
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
         </div>
+        <div>
+            <h2><asp:Label ID="LblVosAllergenes" CssClass="lbl_alller" runat="server" Text="Voici vos allergenes"></asp:Label></h2>
+            <asp:Label ID="LblAllergenes" CssClass="allergenes" runat="server" Text=""></asp:Label>
+        </div>
         <div class="recipes_container">
             <div class="recipes_wrapper">
                 <h4><asp:Label ID="LblTitleRecipe" CssClass="recipes_title" runat="server" Text=""></asp:Label></h4>
                 <asp:ImageButton ID="ImageButton1" CssClass="recipes1_img" runat="server" OnClick="ImageButton1_Click" />
                 <asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
             </div>
+        </div>
+        <div class="recipes_footer">
+            <h4 class="title_content"><asp:Label ID="LblAvis" runat="server" Text=""></asp:Label></h4>
         </div>
     </main> 
 </asp:Content>

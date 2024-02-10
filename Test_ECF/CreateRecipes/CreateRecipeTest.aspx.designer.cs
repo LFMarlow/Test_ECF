@@ -2,7 +2,7 @@
 // <généré automatiquement>
 //     Ce code a été généré par un outil.
 //
-//     Les modifications apportées à ce fichier peuvent provoquer un comportement incorrect et seront perdues si
+//     Les changements apportés à ce fichier peuvent provoquer un comportement incorrect et seront perdues si
 //     le code est régénéré.
 // </généré automatiquement>
 //------------------------------------------------------------------------------
@@ -15,15 +15,6 @@ namespace Test_ECF
     {
 
         /// <summary>
-        /// Contrôle TxtURLImage.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtURLImage;
-
-        /// <summary>
         /// Contrôle TxtTitle.
         /// </summary>
         /// <remarks>
@@ -33,6 +24,15 @@ namespace Test_ECF
         protected global::System.Web.UI.WebControls.TextBox TxtTitle;
 
         /// <summary>
+        /// Contrôle TxtURLImage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtURLImage;
+
+        /// <summary>
         /// Contrôle TxtTime.
         /// </summary>
         /// <remarks>
@@ -40,6 +40,24 @@ namespace Test_ECF
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtTime;
+
+        /// <summary>
+        /// Contrôle TxtTimePrepa.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtTimePrepa;
+
+        /// <summary>
+        /// Contrôle TxtTimeRepos.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtTimeRepos;
 
         /// <summary>
         /// Contrôle TxtDescription.
@@ -58,6 +76,15 @@ namespace Test_ECF
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtAllergenes;
+
+        /// <summary>
+        /// Contrôle TxtBoxRegime.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtBoxRegime;
 
         /// <summary>
         /// Contrôle TxtIngredients.

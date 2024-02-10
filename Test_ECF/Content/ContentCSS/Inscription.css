@@ -14,3 +14,8 @@
     display: grid;
     text-align-last: center;
 }
+
+.Lbl {
+    font-family: Sniglet;
+    color: #ea7068;
+}

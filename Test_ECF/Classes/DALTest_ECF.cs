@@ -28,28 +28,23 @@ namespace Test_ECF.Classes
             try
             {
                 connexion.Open();
-
                 if(connexion.State == System.Data.ConnectionState.Open)
                 {
                     isConnected = true;
-                    
                 }
-
             }catch (Exception ex)
             {
                 isConnected = false;
             }
-
             return isConnected;
         }
 
         //Deconnexion de la BDD
         private void Deconnecter()
         {
-            if ((reader != null) && (reader.IsClosed != true)){
-
+            if ((reader != null) && (reader.IsClosed != true))
+            {
                 reader.Close();
-            
             }
             connexion.Close();
         }
@@ -177,9 +172,64 @@ namespace Test_ECF.Classes
             return objUsers;
         }
 
-        public void CreateRecipes(string prmTitle, string prmImage, string prmTime, string prmDescription, string prmAllergenes, string prmIngredients, string prmEtapes)
+        public List<String> RecupEmailVisiteur(String prmRole)
         {
-            String requete = "INSERT INTO recipes (titre, image, time, description, allergenes, ingredients, etapes) VALUES ('" + prmTitle.Replace("'","''") + "'," + "'" + prmImage + "'," + "'" + prmTime + "'," + "'" + prmDescription.Replace("'", "''") + "'," + "'" + prmAllergenes.Replace("'", "''") + "'," + "'" + prmIngredients.Replace("'", "''") + "'," + "'" + prmEtapes.Replace("'", "''") + "'" +  ")";
+            String requete = "SELECT email FROM utilisateur WHERE role_users = '" + prmRole + "'";
+            bool isConnected = false;
+            List<String> objUsers = null;
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+                    objUsers = new List<String>();
+
+                    do
+                    {
+
+                        objUsers.Add(Convert.ToString(reader["email"]));
+
+                    } while (reader.Read());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objUsers = null;
+            }
+
+            Deconnecter();
+            return objUsers;
+        }
+
+        public void UpdateRoleUser(string prmEmail)
+        {
+            String requete = "UPDATE utilisateur SET role_users = 'Patient' WHERE email = '" + prmEmail + "'";
+            bool isConnected = false;
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                }
+
+            }
+            catch (InvalidOperationException)
+            {
+                isConnected = false;
+            }
+            Deconnecter();
+        }
+
+        public void CreateRecipes(string prmTitle, string prmImage, string prmTime, string prmTimeRepos, string prmTimePrepa, string prmDescription, string prmAllergenes, string prmRegime, string prmIngredients, string prmEtapes, bool prmEstPatient)
+        {
+            String requete = "INSERT INTO recipes (titre, image, time, timeRepos, timePrepa, description, allergenes, regime, ingredients, etapes, estPatient) VALUES ('" + prmTitle.Replace("'","''") + "'," + "'" + prmImage + "'," + "'" + prmTime + "'," + "'" + prmTimeRepos + "'," + "'" + prmTimePrepa + "'," + "'" + prmDescription.Replace("'", "''") + "'," + "'" + prmAllergenes.Replace("'", "''") + "'," + "'" + prmRegime + "'," + "'" + prmIngredients.Replace("'", "''") + "'," + "'" + prmEtapes.Replace("'", "''") + "'" + "," + "'" + prmEstPatient + "'" + ")";
             bool isConnected = false;
             try
             {
@@ -199,7 +249,7 @@ namespace Test_ECF.Classes
 
         public Classes.Recipes RecupRecipes(string prmTitle)
         {
-            String requete = "SELECT titre, image, time, description, allergenes, ingredients, etapes FROM recipes WHERE titre = '" + prmTitle + "'";
+            String requete = "SELECT titre, image, time, timeRepos, timePrepa, description, allergenes, regime, ingredients, etapes, estPatient FROM recipes WHERE titre = '" + prmTitle + "'";
             bool isConnected = false;
             Classes.Recipes objRecipes = null;
 
@@ -216,10 +266,14 @@ namespace Test_ECF.Classes
                     objRecipes.titre = Convert.ToString(reader["titre"]);
                     objRecipes.URLImage = Convert.ToString(reader["image"]);
                     objRecipes.time = Convert.ToString(reader["time"]);
+                    objRecipes.timeRepos = Convert.ToString(reader["timeRepos"]);
+                    objRecipes.timePrepa = Convert.ToString(reader["timePrepa"]);
                     objRecipes.description = Convert.ToString(reader["description"]);
                     objRecipes.allergenes = Convert.ToString(reader["allergenes"]);
+                    objRecipes.regime = Convert.ToString(reader["regime"]);
                     objRecipes.ingredients = Convert.ToString(reader["ingredients"]);
                     objRecipes.etapes = Convert.ToString(reader["etapes"]);
+                    objRecipes.estPatient = Convert.ToBoolean(reader["estPatient"]);
                 }
             }
             catch (Exception ex)
@@ -295,6 +349,365 @@ namespace Test_ECF.Classes
 
             Deconnecter();
             return objRecipes;
+        }
+
+        public Classes.Recipes EtrePatient(string prmTitle)
+        {
+            String requete = "SELECT estPatient FROM recipes WHERE titre = '" + prmTitle + "'";
+            bool isConnected = false;
+            Classes.Recipes objRecipes = new Classes.Recipes();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    objRecipes.estPatient = Convert.ToBoolean(reader["estPatient"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return objRecipes;
+        }
+
+        public Classes.Users RecupAllergeneUsers(string prmEmail)
+        {
+            String requete = "SELECT allergenes FROM utilisateur WHERE email = '" + prmEmail + "'";
+            bool isConnected = false;
+            Classes.Users listAllergenesUsers = new Classes.Users();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        listAllergenesUsers.Allergenes = Convert.ToString(reader["allergenes"]);
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return listAllergenesUsers;
+        }
+
+        public List<String> RecupAllergeneRecipes()
+        {
+            String requete = "SELECT allergenes FROM recipes";
+            bool isConnected = false;
+            List<String> listAllergenesRecipes = new List<String>();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        listAllergenesRecipes.Add(Convert.ToString(reader["allergenes"]));
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return listAllergenesRecipes;
+        }
+
+        public List<String> RecupRecipesWithAllergenesUsers(string prmAllergenes)
+        {
+            String requete = "SELECT titre FROM recipes WHERE allergenes = '" + prmAllergenes + "'";
+            bool isConnected = false;
+            List<String> listAllRecipes = new List<String>();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        listAllRecipes.Add(Convert.ToString(reader["titre"]));
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return listAllRecipes;
+        }
+
+        public List<String> RecupRecipesWithoutAllergene()
+        {
+            String requete = "SELECT titre FROM recipes";
+            bool isConnected = false;
+            List<String> listAllRecipes = new List<String>();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        listAllRecipes.Add(Convert.ToString(reader["titre"]));
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return listAllRecipes;
+        }
+
+        public void CreateComment (string prmNom, string prmPrenom, string prmCommentaire, string prmTitre)
+        {
+            String requete = "INSERT INTO avis (nom, prenom, commentaire, titre) VALUES ('" + prmNom + "'," + "'" + prmPrenom + "'," + "'" + prmCommentaire + "'," + "'" + prmTitre + "'" + ")";
+            bool isConnected = false;
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                }
+
+            }
+            catch (InvalidOperationException)
+            {
+                isConnected = false;
+            }
+            Deconnecter();
+        }
+        
+        public List<String> RecupNomFromRecipes(string prmTitre)
+        {
+            String requete = "SELECT DISTINCT avis.nom FROM avis, recipes WHERE avis.titre = '" + prmTitre + "'";
+            bool isConnected = false;
+            List<String> recupNom = new List<String>();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        recupNom.Add(Convert.ToString(reader["nom"]));
+
+                    }while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return recupNom;
+        }
+
+        public List<String> RecupPrenomFromRecipes(string prmTitre)
+        {
+            String requete = "SELECT DISTINCT avis.prenom FROM avis, recipes WHERE avis.titre = '" + prmTitre + "'";
+            bool isConnected = false;
+            List<String> recupPrenom = new List<String>();
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        recupPrenom.Add(Convert.ToString(reader["prenom"]));
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return recupPrenom;
+        }
+
+        public String RecupTitreFromRecipes(string prmTitre)
+        {
+            String requete = "SELECT DISTINCT avis.titre FROM avis, recipes WHERE avis.titre = '" + prmTitre + "'";
+            bool isConnected = false;
+            String recupTitre = "";
+
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        recupTitre = Convert.ToString(reader["titre"]);
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return recupTitre;
+        }
+
+        public List<String> RecupComment(string prmTitre, string prmNom)
+        {
+            String requete = "SELECT DISTINCT avis.commentaire FROM avis, recipes WHERE avis.titre = '" + prmTitre + "'" + " AND avis.nom = '" + prmNom + "'";
+            bool isConnected = false;
+            List<String> recupCommentaire = new List<string>();
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+
+                        recupCommentaire.Add(Convert.ToString(reader["commentaire"]));
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return recupCommentaire;
+        }
+
+        public void CreateNote(int prmNote, string prmTitre)
+        {
+            String requete = "INSERT INTO avis (note, titre) VALUES ('" + prmNote + "', " + "'" + prmTitre + "'" + ")";
+            bool isConnected = false;
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                }
+
+            }
+            catch (InvalidOperationException)
+            {
+                isConnected = false;
+            }
+            Deconnecter();
+        }
+
+        public List<Int32> RecupNote(string prmTitre)
+        {
+            String requete = "SELECT avis.note FROM avis WHERE avis.titre ='" + prmTitre + "'";
+            bool isConnected = false;
+            List<Int32> recupNote = new List<Int32>();
+            try
+            {
+                isConnected = Connecter();
+                if (isConnected)
+                {
+                    command = new MySqlCommand(requete, connexion);
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    do
+                    {
+                        if (!reader.IsDBNull(reader.GetOrdinal("note")))
+                        {
+                            recupNote.Add(Convert.ToInt32(reader["note"]));
+                        }
+                        
+
+                    } while (reader.Read());
+                }
+            }
+            catch (Exception ex)
+            {
+                isConnected = false;
+            }
+
+            Deconnecter();
+            return recupNote;
         }
     }
 }

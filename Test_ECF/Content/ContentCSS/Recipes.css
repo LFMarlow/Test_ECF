@@ -37,8 +37,7 @@
 }
 
 .img_cuisson {
-    width: 4em;
-    height: 4em;
+    width: 5%;
     margin-right: 0.5em;
 }
 
@@ -75,4 +74,29 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
     float: right;
+}
+
+.BtnSend {
+    border-radius: 20px;
+    background-color: #ea7068;
+}
+
+.TxtBoxAvis {
+    height: 5em;
+    resize: none;
+    font-size: 1em;
+    border-radius: 10px;
+    width: -webkit-fill-available;
+}
+
+.PnlAvis {
+    border-style: solid;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.title_note {
+    color: #ea7068;
+    font-size: 1.5em;
+    font-family: 'Sniglet';
 }

@@ -26,6 +26,7 @@
     top: 0.2em;
     text-align: center;
     font-family: 'Sniglet';
+    color: #ea7068;
 }
 
 .see_recipe {
@@ -37,4 +38,15 @@
     padding: 0.25em 1em;
     border-radius: 20px;
     font-weight: bold;
+}
+
+.allergenes {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lbl_alller {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -70px;
 }

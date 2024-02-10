@@ -2,8 +2,9 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link href="/Content/ContentCSS/About.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet" rel="stylesheet" />
     <main aria-labelledby="title" id="body_content">
-        <center><h2 id="title">Sandrine, Diététicienne Nutritionniste en ligne</h2></center>
+        <center><h2 id="title_about">Sandrine, Diététicienne Nutritionniste en ligne</h2></center>
         <div class="img_wrapper">
             <img src="/Content/ContentIMG/SandrineC.jpg" alt="welcome background image" class="welcome-img main-image" />
             <div class="content">

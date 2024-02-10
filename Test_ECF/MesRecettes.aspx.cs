@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace Test_ECF
 {
@@ -11,37 +12,116 @@ namespace Test_ECF
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String titre;
-            String img;
-            String time;
-            String descrip;
-            String allergenes;
-            String ingredient;
-            String etapes;
+
+            //Variable pour recupéré les allergenes des utilisateurs et recettes
+            String allergeneUser = "";
+
+            //Variable pour récupéré l'email pour recupéré les allergenes de l'utilisateur connecté
+            String emailUsers = "";
 
             //Objet pour récupéré toutes les recettes
             Classes.Recipes objRecipes = new Classes.Recipes();
             Classes.DALTest_ECF objDal = new Classes.DALTest_ECF();
+            Classes.Users objUsers = new Classes.Users();
 
-            if (DropDownList1.Items.Count == 0)
+            if (Convert.ToBoolean(Session["EstConnecte"]))
             {
-                //On récupére toutes les informations de chaque recette
-                List<String> recupTitleRecipe = new List<string>();
-                recupTitleRecipe = objDal.RecupTitleRecipes();
+                //On récupéré l'email de l'utilisateur pour récupéré les allergenes de ce même users
+                emailUsers = Convert.ToString(Session["MailUtilisateur"]);
+                objUsers = objDal.RecupAllergeneUsers(emailUsers);
+                allergeneUser = objUsers.Allergenes;
 
-                DropDownList1.Items.Add("");
-                for (int i = 0; i < recupTitleRecipe.Count; i++)
+                //On récupére la liste des allergenes de l'utilisateur et on Split
+                List<String> listAllergenesUsers = new List<string>(allergeneUser.Split(','));
+                listAllergenesUsers.RemoveAll(s => s == "");
+
+                //On récupére les allergenes de chaque recette
+                List<String> listAllergenesRecipes = new List<string>();
+                listAllergenesRecipes = objDal.RecupAllergeneRecipes();
+                listAllergenesRecipes.RemoveAll(s => s == "");
+
+                var listComparateur = listAllergenesRecipes.Intersect(listAllergenesUsers);
+                string recupResultComparateur;
+                recupResultComparateur = string.Join(", ", listComparateur);
+
+                List<String> allTitleRecipes = new List<string>();
+                if (!recupResultComparateur.Contains(""))
                 {
-                    DropDownList1.Items.Add(recupTitleRecipe[i].ToString());
+                    allTitleRecipes = objDal.RecupRecipesWithAllergenesUsers(recupResultComparateur);
                 }
+                else
+                {
+                    allTitleRecipes = objDal.RecupRecipesWithoutAllergene();
+                }
+
+                if (DropDownList1.Items.Count == 0)
+                {
+                    DropDownList1.Items.Add("");
+                    for (int i = 0; i < allTitleRecipes.Count; i++)
+                    {
+                        DropDownList1.Items.Add(allTitleRecipes[i].ToString());
+                    }
+                }
+            }
+
+            if (!Convert.ToBoolean(Session["EstConnecte"]))
+            {
+                //Si le DropDownList est vide, on le rempli avec les recettes contenue dans la BDD (Cela évite d'avoir plusieurs entrée de la même recette)
+                if (DropDownList1.Items.Count == 0)
+                {
+                    //On récupére toutes les informations de chaque recette
+                    List<String> recupTitleRecipe = new List<string>();
+                    recupTitleRecipe = objDal.RecupTitleRecipes();
+
+                    DropDownList1.Items.Add("");
+                    for (int i = 0; i < recupTitleRecipe.Count; i++)
+                    {
+                        DropDownList1.Items.Add(recupTitleRecipe[i].ToString());
+                    }
+                }
+                LblAvis.Text = "Connecter vous pour donner votre avis sur les recettes !";
             }
             ImageButton1.Visible = false;
             PlaceHolder1.Visible = false;
+            LblAllergenes.Visible = false;
+            LblVosAllergenes.Visible = false;
+
+            //On récupére les allergenes de l'utilisateur
+            if(Convert.ToBoolean(Session["EstConnecte"]) == true)
+            {
+                emailUsers = Convert.ToString(Session["MailUtilisateur"]);
+                objUsers = objDal.RecupAllergeneUsers(emailUsers);
+                LblAllergenes.Text = objUsers.Allergenes;
+                LblAllergenes.Visible = true;
+                LblVosAllergenes.Visible = true;
+            }
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("/CreateRecipes/" + LblTitleRecipe.Text + ".aspx");
+            Session["titreRecette"] = LblTitleRecipe.Text;
+
+            Classes.DALTest_ECF objDal = new Classes.DALTest_ECF();
+            Classes.Recipes objRecipes = new Classes.Recipes();
+
+            objRecipes = objDal.EtrePatient(LblTitleRecipe.Text);
+            if (objRecipes.estPatient == true)
+            {
+                if (Convert.ToString(Session["RoleUtilisateur"]) == "Patient" || (Convert.ToString(Session["RoleUtilisateur"]) == "Administrateur"))
+                {
+                    
+                    Response.Redirect("~/Recipe.aspx");
+                }
+                else
+                {
+                    MessageBox.Show("Vous devez être Patient pour visualiser cette recette.");
+                    Response.Redirect("~/MesRecettes.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Recipe.aspx");
+            }
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,6 +136,10 @@ namespace Test_ECF
             PlaceHolder1.Controls.Add(ImageButton1);
             ImageButton1.Visible = true;
             PlaceHolder1.Visible = true;
+            if(LblTitleRecipe.Text == "")
+            {
+                ImageButton1.Visible = false;
+            }
         }
     }
 }

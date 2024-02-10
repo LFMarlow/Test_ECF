@@ -152,6 +152,8 @@
     <Content Include="Content\ContentIMG\recipes3.jpg" />
     <Content Include="Content\ContentIMG\SandrineC.jpg" />
     <Content Include="Content\ContentIMG\tmp_cuisson.png" />
+    <Content Include="Content\ContentIMG\tmp_prepa.png" />
+    <Content Include="Content\ContentIMG\tmp_repos.png" />
     <Content Include="Content\Site.css" />
     <Content Include="CreateRecipes\CreateRecipeTest.aspx" />
     <Content Include="CreateRecipes\JustCodeBehind.aspx" />
@@ -164,8 +166,7 @@
     <Content Include="OpenAPIs\WBServiceTest_ECF.asmx">
       <CodeGenerator>NSwagCSharp</CodeGenerator>
     </Content>
-    <Content Include="Recipes\Recipes2.aspx" />
-    <Content Include="Recipes\Recipes3.aspx" />
+    <Content Include="Recipe.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -304,19 +305,12 @@
       <DependentUpon>Mon-Compte.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipes\Recipes2.aspx.cs">
-      <DependentUpon>Recipes2.aspx</DependentUpon>
+    <Compile Include="Recipe.aspx.cs">
+      <DependentUpon>Recipe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Recipes\Recipes2.aspx.designer.cs">
-      <DependentUpon>Recipes2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Recipes\Recipes3.aspx.cs">
-      <DependentUpon>Recipes3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Recipes\Recipes3.aspx.designer.cs">
-      <DependentUpon>Recipes3.aspx</DependentUpon>
+    <Compile Include="Recipe.aspx.designer.cs">
+      <DependentUpon>Recipe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

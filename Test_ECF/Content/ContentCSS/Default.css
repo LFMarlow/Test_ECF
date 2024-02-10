@@ -66,3 +66,8 @@ textarea{
 .mon_compte{
     margin-left: 350px;
 }
+
+.BtnDeco {
+    border-radius: 20px;
+    background-color: #ea7068;
+}

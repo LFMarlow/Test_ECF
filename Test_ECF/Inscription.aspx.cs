@@ -16,19 +16,19 @@ namespace Test_ECF
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckBoxListAllergenes.Items.Add("Gluten");
-            CheckBoxListAllergenes.Items.Add("Oeuf");
+            
 
         }
 
         protected void BtnInscription_Click(object sender, EventArgs e)
         {
-            string Nom = TxtBoxNom.Text;
-            string Prenom = TxtBoxPrenom.Text;
-            string email = TxtBoxMail.Text;
-            string password = TxtBoxMDP.Text;
-            string roleUsers = "Patients";
-            string allergenes = " ";
+            String Nom = TxtBoxNom.Text;
+            String Prenom = TxtBoxPrenom.Text;
+            String email = TxtBoxMail.Text;
+            String password = TxtBoxMDP.Text;
+            String roleUsers = "Visiteur";
+            String allergenes = TxtBoxAllergenes.Text;
+
             Classes.Users objUsers = new Classes.Users();
 
             if (Nom != "" && Prenom != "" && email != "" && password != "")
@@ -38,25 +38,6 @@ namespace Test_ECF
                     objUsers = objDal.VerifDoublonMailInscription(email);
                     if (objUsers == null)
                     {
-                        /*     for(int i = 0; i < CheckBoxListAllergenes.Items.Count-1; i++)
-                             {
-                                 if (CheckBoxListAllergenes.Items[i].Selected)
-                                 {
-                                     allergenes = CheckBoxListAllergenes.Items[i].Text;
-                                 }
-                             }*/
-                        if (CheckBoxListAllergenes.Items[0].Selected && CheckBoxListAllergenes.Items[1].Selected == false)
-                        {
-                            allergenes = CheckBoxListAllergenes.Items[0].Text;
-
-                        }else if (CheckBoxListAllergenes.Items[1].Selected && CheckBoxListAllergenes.Items[0].Selected == false)
-                        {
-                            allergenes = CheckBoxListAllergenes.Items[1].Text;
-
-                        }else if (CheckBoxListAllergenes.Items[0].Selected && CheckBoxListAllergenes.Items[1].Selected)
-                        {
-                            allergenes = CheckBoxListAllergenes.Items[0].Text + "," + " " + CheckBoxListAllergenes.Items[1].Text;
-                        }
                         objDal.Inscription(Nom, Prenom, email, password, roleUsers, allergenes);
                         MessageBox.Show("Inscription Réussi ! Vous pouvez dès à présent vous connecter", "Réussi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Response.Redirect("~/Connexion", false);

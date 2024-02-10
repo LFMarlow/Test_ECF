@@ -12,23 +12,7 @@ namespace Test_ECF.CreateRecipes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Convert.ToBoolean(Session["OnlyVisiblePatient"]) == true)
-            {
-                if (Convert.ToString(Session["RoleUtilisateur"]) == "Patients" || Convert.ToString(Session["RoleUtilisateur"]) == "Administrateur")
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("Vous devez être enregistré comme Patients pour visualiser cette Recette");
-                    Response.Redirect("~/", false);
-                }
-            }
-            else
-            {
-
-            }
+            
         }
     }
 }

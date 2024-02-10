@@ -61,6 +61,7 @@
                           else 
                           { %>
                                 <li class="nav-item"><a class="nav-link mon_compte" runat="server" href="~/Mon-Compte">Mon Compte</a></li>
+                                <asp:Button ID="BtnDeconnexion" CssClass="BtnDeco" runat="server" Text="Deconnexion" OnClick="BtnDeconnexion_Click" />
                           <%}%>
                     </ul>
                 </div>

@@ -52,3 +52,12 @@
     display: flex;
     margin: auto;
 }
+
+.div_visiteur {
+    display: flex;
+    justify-content: center;
+}
+
+.LblVisiteur{
+    margin-top: 10px;
+}

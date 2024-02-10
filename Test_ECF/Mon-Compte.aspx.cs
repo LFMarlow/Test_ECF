@@ -12,6 +12,7 @@ namespace Test_ECF
     public partial class Mon_Compte : System.Web.UI.Page
     {
         DALTest_ECF objDal = new DALTest_ECF();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +38,33 @@ namespace Test_ECF
                     CheckBoxListAllergies.Items.Add(sub.ToString());
                     CheckBoxListAllergies.Items[i].Selected = true;
                     i++;
-                }   
+                }
+
+                if(Convert.ToString(Session["RoleUtilisateur"]) == "Administrateur")
+                {
+                    List<String> recupVisiteur = new List<string>();
+                    recupVisiteur = objDal.RecupEmailVisiteur("Visiteur");
+
+                    if (recupVisiteur != null)
+                    {
+                        LblVisiteur.Visible = false;
+                        if (DropDownVisiteurs.Items.Count == 0)
+                        {
+                            DropDownVisiteurs.Items.Add("");
+                            foreach (var visiteur in recupVisiteur)
+                            {
+                                DropDownVisiteurs.Items.Add(visiteur);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        LblVisiteur.Visible = true;
+                        DropDownVisiteurs.Visible = false;
+                        LblVisiteur.Text = "Il n'y a pas de Visiteur pour le moment";
+                        LblVisiteurToPatient.Visible = false;
+                    } 
+                }
             }
             else
             {
@@ -48,6 +75,57 @@ namespace Test_ECF
         protected void BtnCreteRecipes_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/CreateRecipes/CreateRecipeTest", false);
+        }
+
+        protected void DropDownVisiteurs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownVisiteurs.SelectedValue != "")
+            {
+                DialogResult result = MessageBox.Show("Etes-vous sûr de vouloir passer" + " " + DropDownVisiteurs.SelectedValue + " " + "en 'Patient' ?", "Passer en tant que Patient ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    Classes.DALTest_ECF objDal = new DALTest_ECF();
+                    objDal.UpdateRoleUser(DropDownVisiteurs.SelectedValue);
+
+                    MessageBox.Show(DropDownVisiteurs.SelectedValue + " " + "Est devenu 'Patient' !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else if (result == DialogResult.No)
+                {
+
+                }
+                else
+                {
+
+                }
+                RefreshDropDownList();
+            }
+        }
+
+        public void RefreshDropDownList()
+        {
+            List<String> recupVisiteur = new List<string>();
+            recupVisiteur = objDal.RecupEmailVisiteur("Visiteur");
+
+            if (recupVisiteur != null)
+            {
+                LblVisiteur.Visible = false;
+                if (DropDownVisiteurs.Items.Count == 0)
+                {
+                    DropDownVisiteurs.Items.Add("");
+                    foreach (var visiteur in recupVisiteur)
+                    {
+                        DropDownVisiteurs.Items.Add(visiteur);
+                    }
+                }
+            }
+            else
+            {
+                LblVisiteur.Visible = true;
+                DropDownVisiteurs.Visible = false;
+                LblVisiteur.Text = "Il n'y a pas de Visiteur pour le moment";
+                LblVisiteurToPatient.Visible = false;
+            }
         }
     }
 }

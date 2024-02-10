@@ -96,6 +96,33 @@ namespace Test_ECF
         protected global::System.Web.UI.WebControls.Label LblSessionAdmin;
 
         /// <summary>
+        /// Contrôle LblVisiteur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblVisiteur;
+
+        /// <summary>
+        /// Contrôle LblVisiteurToPatient.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblVisiteurToPatient;
+
+        /// <summary>
+        /// Contrôle DropDownVisiteurs.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownVisiteurs;
+
+        /// <summary>
         /// Contrôle BtnCreteRecipes.
         /// </summary>
         /// <remarks>
