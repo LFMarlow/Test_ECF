@@ -36,26 +36,26 @@ namespace Test_ECF
                 try
                 {
                     objUsers = objDal.VerifDoublonMailInscription(email);
-                    if (objUsers == null)
+                    if (objUsers.email == null)
                     {
                         objDal.Inscription(Nom, Prenom, email, password, roleUsers, allergenes);
-                        MessageBox.Show("Inscription Réussi ! Vous pouvez dès à présent vous connecter", "Réussi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Alert.Show("Inscription Réussi ! Vous pouvez dès à présent vous connecter");
+                        
                         Response.Redirect("~/Connexion", false);
                     }
                     else
                     {
-                        MessageBox.Show("Cette adresse email existe déjà", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Alert.Show("Cette adresse email existe déjà");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Connexion echoué");
-                    MessageBox.Show(ex.ToString());
+                    Alert.Show("Connexion echoué");
                 }
             }
             else
             {
-                MessageBox.Show("Tout les champs doivent être remplis", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Alert.Show("Tout les champs doivent être remplis");
             }
         }
     }

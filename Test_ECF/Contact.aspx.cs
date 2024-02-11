@@ -49,12 +49,12 @@ namespace Test_ECF
 
                 monSmtpClient.Send(Mail);
 
-                MessageBox.Show("Votre e-mail à bien été envoyé !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Alert.Show("Votre e-mail à bien été envoyé !");
 
             }
             catch
             {
-                MessageBox.Show("Erreur lors de l'envoi de l'é-mail", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Alert.Show("Erreur lors de l'envoi de l'e-mail");
             }
         }
     }

@@ -81,23 +81,11 @@ namespace Test_ECF
         {
             if (DropDownVisiteurs.SelectedValue != "")
             {
-                DialogResult result = MessageBox.Show("Etes-vous sûr de vouloir passer" + " " + DropDownVisiteurs.SelectedValue + " " + "en 'Patient' ?", "Passer en tant que Patient ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
                     Classes.DALTest_ECF objDal = new DALTest_ECF();
                     objDal.UpdateRoleUser(DropDownVisiteurs.SelectedValue);
 
-                    MessageBox.Show(DropDownVisiteurs.SelectedValue + " " + "Est devenu 'Patient' !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (result == DialogResult.No)
-                {
-
-                }
-                else
-                {
-
-                }
+                    Alert.Show(DropDownVisiteurs.SelectedValue + " " + "Est devenu 'Patient' !");
+               
                 RefreshDropDownList();
             }
         }

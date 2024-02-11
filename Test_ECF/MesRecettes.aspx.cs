@@ -114,7 +114,8 @@ namespace Test_ECF
                 }
                 else
                 {
-                    MessageBox.Show("Vous devez être Patient pour visualiser cette recette.");
+                    Alert.Show("Vous devez être Patient pour visualiser cette recette.");
+                    
                     Response.Redirect("~/MesRecettes.aspx");
                 }
             }

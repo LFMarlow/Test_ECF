@@ -70,8 +70,17 @@ namespace Test_ECF
                     List<Int32> recupNotes = new List<Int32>();
 
                     recupNotes = objDal.RecupNote(titre);
+                    double noteTotal = 0;
 
-                    double noteTotal = recupNotes.Average();
+                    if (recupNotes.Count == 0)
+                    {
+                        
+                    }
+                    else
+                    {
+                        noteTotal = recupNotes.Average();
+                    }
+
                     LblNote.Text = "La moyenne de cette recette est :" + " " + noteTotal.ToString();
 
                     foreach (var ingr in recupIngrSplit)
@@ -160,7 +169,6 @@ namespace Test_ECF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(e.ToString());
                     Response.Redirect("~/MesRecettes.aspx");
                 }
             }

@@ -13,6 +13,9 @@
             <h2><asp:Label ID="LblVosAllergenes" CssClass="lbl_alller" runat="server" Text="Voici vos allergenes"></asp:Label></h2>
             <asp:Label ID="LblAllergenes" CssClass="allergenes" runat="server" Text=""></asp:Label>
         </div>
+        <br />
+        <br />
+        <br />
         <div class="recipes_container">
             <div class="recipes_wrapper">
                 <h4><asp:Label ID="LblTitleRecipe" CssClass="recipes_title" runat="server" Text=""></asp:Label></h4>
@@ -23,5 +26,8 @@
         <div class="recipes_footer">
             <h4 class="title_content"><asp:Label ID="LblAvis" runat="server" Text=""></asp:Label></h4>
         </div>
+        <br />
+        <br />
+        <br />
     </main> 
 </asp:Content>

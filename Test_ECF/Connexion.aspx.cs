@@ -53,10 +53,14 @@ namespace Test_ECF
                     Session["Allergenes"] = allergenes;
                     Response.Redirect("~/", false);
                 }
+                else
+                {
+                    Alert.Show("Informations Erronées.");
+                }
             }
             else
             {
-                MessageBox.Show("Vous devez remplir les champs obligatoirement.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Alert.Show("Vous devez remplir les champs obligatoirement.");
             }
 
         }
