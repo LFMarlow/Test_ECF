@@ -31,10 +31,10 @@
                 <h2 class="title_content">Allergenes :</h2>
                 <p class="info_allergenes">
                     Sur les recettes proposées, il est possible de retrouver des allergènes.
-                    Veuillez choisir vos allergènes, ainsi, les recettes en contenant n'apparaitront plus.
+                    Selon vos allergènes, certaine recette ne seront disponible pour votre sécurité.
                 </p>
                 <div class="div_content_allergenes">
-                    <asp:CheckBoxList ID="CheckBoxListAllergies" runat="server"></asp:CheckBoxList>
+                    <asp:Label ID="LblAllergenes" runat="server" Text="Label"></asp:Label>
                 </div>
                 </div>
             </div>

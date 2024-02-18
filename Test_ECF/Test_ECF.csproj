@@ -144,7 +144,6 @@
     <Content Include="Content\ContentCSS\Services.css" />
     <Content Include="Content\ContentIMG\bilan-dietetique.jpg" />
     <Content Include="Content\ContentIMG\Com.jpg" />
-    <Content Include="Content\ContentIMG\connexion.jpg" />
     <Content Include="Content\ContentIMG\connexion.png" />
     <Content Include="Content\ContentIMG\imgback.jpg" />
     <Content Include="Content\ContentIMG\recipes1.jpg" />
@@ -198,6 +197,10 @@
     <Content Include="MentionsLegal.aspx" />
     <Content Include="Politique-de-confidentialite.aspx" />
     <Content Include="Mes-Services.aspx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\SCoupart - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\TestECF20240211010924.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -242,6 +245,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\Alert.cs" />
     <Compile Include="Classes\DALTest_ECF.cs" />
     <Compile Include="Classes\Recipes.cs" />
     <Compile Include="Classes\Users.cs" />

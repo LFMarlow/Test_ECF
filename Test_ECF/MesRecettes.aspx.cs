@@ -23,6 +23,7 @@ namespace Test_ECF
             Classes.Recipes objRecipes = new Classes.Recipes();
             Classes.DALTest_ECF objDal = new Classes.DALTest_ECF();
             Classes.Users objUsers = new Classes.Users();
+            LblRecetteNonDispo.Visible = false;
 
             if (Convert.ToBoolean(Session["EstConnecte"]))
             {
@@ -45,21 +46,31 @@ namespace Test_ECF
                 recupResultComparateur = string.Join(", ", listComparateur);
 
                 List<String> allTitleRecipes = new List<string>();
-                if (!recupResultComparateur.Contains(""))
+                if (recupResultComparateur.Length == 0)
                 {
-                    allTitleRecipes = objDal.RecupRecipesWithAllergenesUsers(recupResultComparateur);
+                    allTitleRecipes = objDal.RecupRecipesWithoutAllergene();
                 }
                 else
                 {
-                    allTitleRecipes = objDal.RecupRecipesWithoutAllergene();
+                    allTitleRecipes = objDal.RecupRecipesWithAllergenesUsers(recupResultComparateur);
                 }
 
                 if (DropDownList1.Items.Count == 0)
                 {
-                    DropDownList1.Items.Add("");
-                    for (int i = 0; i < allTitleRecipes.Count; i++)
+                    if (allTitleRecipes.Count != 0)
                     {
-                        DropDownList1.Items.Add(allTitleRecipes[i].ToString());
+
+                        LblRecetteNonDispo.Visible = false;
+                        DropDownList1.Items.Add("");
+                        for (int i = 0; i < allTitleRecipes.Count; i++)
+                        {
+                            DropDownList1.Items.Add(allTitleRecipes[i].ToString());
+                        }
+                    }
+                    else
+                    {
+                        DropDownList1.Visible = false;
+                        LblRecetteNonDispo.Visible = true;
                     }
                 }
             }
@@ -116,8 +127,9 @@ namespace Test_ECF
                 {
                     Alert.Show("Vous devez être Patient pour visualiser cette recette.");
                     
-                    Response.Redirect("~/MesRecettes.aspx");
+                    
                 }
+                Response.Redirect("~/MesRecettes.aspx");
             }
             else
             {

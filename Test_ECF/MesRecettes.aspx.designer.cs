@@ -33,6 +33,15 @@ namespace Test_ECF
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
+        /// Contrôle LblRecetteNonDispo.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblRecetteNonDispo;
+
+        /// <summary>
         /// Contrôle LblVosAllergenes.
         /// </summary>
         /// <remarks>

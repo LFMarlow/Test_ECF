@@ -105,7 +105,7 @@ namespace Test_ECF
                         PnlAvis.Visible = false;
                         LblLaissezNote.Visible = false;
                     }
-                    else
+                    else if (Convert.ToString(Session["RoleUtilisateur"]) != "Visiteur")
                     {
                         List<String> recupNomFromRecipes = new List<String>();
                         List<String> recupPrenomFromRecipes = new List<String>();
@@ -137,32 +137,110 @@ namespace Test_ECF
 
                             foreach (var nomCom in recupNomFromRecipes)
                             {
-                                System.Web.UI.WebControls.Label LblNom = new System.Web.UI.WebControls.Label();
-                                System.Web.UI.WebControls.Label LblPrenom = new System.Web.UI.WebControls.Label();
-                                System.Web.UI.WebControls.Label LblComment = new System.Web.UI.WebControls.Label();
+                                if (nomCom != "")
+                                {
+                                    System.Web.UI.WebControls.Label LblNom = new System.Web.UI.WebControls.Label();
+                                    System.Web.UI.WebControls.Label LblPrenom = new System.Web.UI.WebControls.Label();
+                                    System.Web.UI.WebControls.Label LblComment = new System.Web.UI.WebControls.Label();
 
 
-                                LblNom.Text = string.Join(", ", recupNomFromRecipes[j]);
-                                LblNom.ID = "LabelNom" + (j).ToString();
-                                PnlAvis.Controls.Add(LblNom);
-                                j++;
+                                    LblNom.Text = string.Join(", ", recupNomFromRecipes[j]);
+                                    LblNom.ID = "LabelNom" + (j).ToString();
+                                    PnlAvis.Controls.Add(LblNom);
+                                    j++;
 
 
-                                LblPrenom.Text = string.Join(", ", recupPrenomFromRecipes[k]);
-                                LblPrenom.ID = "LabelPrenom" + (k).ToString();
-                                PnlAvis.Controls.Add(new LiteralControl("&nbsp;"));
-                                PnlAvis.Controls.Add(LblPrenom);
-                                k++;
+                                    LblPrenom.Text = string.Join(", ", recupPrenomFromRecipes[k]);
+                                    LblPrenom.ID = "LabelPrenom" + (k).ToString();
+                                    PnlAvis.Controls.Add(new LiteralControl("&nbsp;"));
+                                    PnlAvis.Controls.Add(LblPrenom);
+                                    k++;
 
 
-                                recupComment = objDal.RecupComment(titre, LblNom.Text);
-                                LblComment.Text = string.Join(",", recupComment.ToList());
-                                LblComment.ID = "LabelCommentaire" + (i).ToString();
-                                PnlAvis.Controls.Add(new LiteralControl("<br/>"));
-                                PnlAvis.Controls.Add(LblComment);
-                                PnlAvis.Controls.Add(new LiteralControl("<br/>"));
-                                PnlAvis.Controls.Add(new LiteralControl("<br/>"));
-                                i++;
+                                    recupComment = objDal.RecupComment(titre, LblNom.Text);
+                                    LblComment.Text = string.Join(",", recupComment.ToList());
+                                    LblComment.ID = "LabelCommentaire" + (i).ToString();
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    PnlAvis.Controls.Add(LblComment);
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    i++;
+                                }
+                                else
+                                {
+                                    j++;
+                                    k++;
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        List<String> recupNomFromRecipes = new List<String>();
+                        List<String> recupPrenomFromRecipes = new List<String>();
+                        List<String> recupComment = new List<String>();
+
+                        String titreRecipes = "";
+
+                        int i = 0;
+                        int j = 0;
+                        int k = 0;
+
+                        recupNomFromRecipes = objDal.RecupNomFromRecipes(titre);
+                        recupPrenomFromRecipes = objDal.RecupPrenomFromRecipes(titre);
+                        titreRecipes = objDal.RecupTitreFromRecipes(titre);
+
+                        LblAvisDeco.Visible = false;
+                        LblAvisCo.Visible = false;
+                        TxtBoxAvis.Visible = false;
+                        BtnSendAvis.Visible = false;
+                        PnlAvis.Visible = true;
+                        CheckBoxList1.Visible = false;
+                        LblLaissezNote.Visible = false;
+
+                        if (titreRecipes == titre)
+                        {
+
+                            PnlAvis.Visible = true;
+
+                            foreach (var nomCom in recupNomFromRecipes)
+                            {
+                                if (nomCom != "")
+                                {
+                                    System.Web.UI.WebControls.Label LblNom = new System.Web.UI.WebControls.Label();
+                                    System.Web.UI.WebControls.Label LblPrenom = new System.Web.UI.WebControls.Label();
+                                    System.Web.UI.WebControls.Label LblComment = new System.Web.UI.WebControls.Label();
+
+
+                                    LblNom.Text = string.Join(", ", recupNomFromRecipes[j]);
+                                    LblNom.ID = "LabelNom" + (j).ToString();
+                                    PnlAvis.Controls.Add(LblNom);
+                                    j++;
+
+
+                                    LblPrenom.Text = string.Join(", ", recupPrenomFromRecipes[k]);
+                                    LblPrenom.ID = "LabelPrenom" + (k).ToString();
+                                    PnlAvis.Controls.Add(new LiteralControl("&nbsp;"));
+                                    PnlAvis.Controls.Add(LblPrenom);
+                                    k++;
+
+
+                                    recupComment = objDal.RecupComment(titre, LblNom.Text);
+                                    LblComment.Text = string.Join(",", recupComment.ToList());
+                                    LblComment.ID = "LabelCommentaire" + (i).ToString();
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    PnlAvis.Controls.Add(LblComment);
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    PnlAvis.Controls.Add(new LiteralControl("<br/>"));
+                                    i++;
+                                }
+                                else
+                                {
+                                    j++;
+                                    k++;
+                                    i++;
+                                }
                             }
                         }
                     }
@@ -191,12 +269,13 @@ namespace Test_ECF
             prenom = Convert.ToString(Session["Prenom"]);
             commentaire = TxtBoxAvis.Text;
 
-            objDal.CreateComment(nom, prenom, commentaire, titreRecipes);
-
-            PnlAvis.Visible = true;
+            
 
             if(commentaire != "")
             {
+                objDal.CreateComment(nom, prenom, commentaire, titreRecipes);
+                PnlAvis.Visible = true;
+
                 System.Web.UI.WebControls.Label LblNom = new System.Web.UI.WebControls.Label();
                 System.Web.UI.WebControls.Label LblPrenom = new System.Web.UI.WebControls.Label();
                 System.Web.UI.WebControls.Label LblComment = new System.Web.UI.WebControls.Label();
@@ -214,13 +293,18 @@ namespace Test_ECF
                 PnlAvis.Controls.Add(new LiteralControl("<br/>"));
                 PnlAvis.Controls.Add(new LiteralControl("<br/>"));
                 i++;
+
+                Alert.Show("Commentaire ajouté avec succès ! Merci !");
             }
+
             for(int l = 0; l < CheckBoxList1.Items.Count; l++)
             {
                 if(CheckBoxList1.Items[l].Selected)
                 {
                     int note = int.Parse(CheckBoxList1.Items[l].Value);
                     objDal.CreateNote(note, titreRecipes);
+
+                    Alert.Show("Note ajouté avec succès ! Merci !");
                 }
             }
         }

@@ -51,13 +51,13 @@ namespace Test_ECF
         protected global::System.Web.UI.WebControls.Label LblSession;
 
         /// <summary>
-        /// Contrôle CheckBoxListAllergies.
+        /// Contrôle LblAllergenes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxListAllergies;
+        protected global::System.Web.UI.WebControls.Label LblAllergenes;
 
         /// <summary>
         /// Contrôle LblPrenonAdmin.

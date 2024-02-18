@@ -6,7 +6,7 @@
         <h2>1 – Qui sommes-nous ?</h2>
         <br />
         <br />
-        <p>L’adresse de notre site est : https://testECF.fr.</p>
+        <p>L’adresse de notre site est : https://scoupart.azurewebsites.net.</p>
         <br />
         <h2>2 – Commentaires</h2>
         <br />

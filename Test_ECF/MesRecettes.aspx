@@ -8,6 +8,7 @@
         <div>
             <h2><asp:Label ID="LblDDL" runat="server" Text="Choisir la Recette que vous voulez voir"></asp:Label></h2>
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
+            <asp:Label ID="LblRecetteNonDispo" runat="server" Text="Il n'y a pas de recette disponible pour vous."></asp:Label>
         </div>
         <div>
             <h2><asp:Label ID="LblVosAllergenes" CssClass="lbl_alller" runat="server" Text="Voici vos allergenes"></asp:Label></h2>

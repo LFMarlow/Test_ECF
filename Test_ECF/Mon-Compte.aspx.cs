@@ -18,8 +18,6 @@ namespace Test_ECF
         {
             if (Convert.ToBoolean(Session["EstConnecte"]))
             {
-                String[] test;
-                int i = 0;
                 LblPrenon.Text = Session["Prenom"].ToString();
                 LblPrenonAdmin.Text = Session["Prenom"].ToString();
 
@@ -32,13 +30,8 @@ namespace Test_ECF
                 LblSession.Text = Session["RoleUtilisateur"].ToString();
                 LblSessionAdmin.Text = Session["RoleUtilisateur"].ToString();
 
-                test = Session["Allergenes"].ToString().Split(',');
-                foreach (var sub in test)
-                {
-                    CheckBoxListAllergies.Items.Add(sub.ToString());
-                    CheckBoxListAllergies.Items[i].Selected = true;
-                    i++;
-                }
+                LblAllergenes.Text = Convert.ToString(Session["Allergenes"]).Replace(',', ' ');
+
 
                 if(Convert.ToString(Session["RoleUtilisateur"]) == "Administrateur")
                 {
@@ -98,14 +91,14 @@ namespace Test_ECF
             if (recupVisiteur != null)
             {
                 LblVisiteur.Visible = false;
-                if (DropDownVisiteurs.Items.Count == 0)
+                DropDownVisiteurs.Items.Clear();
+
+                DropDownVisiteurs.Items.Add("");
+                foreach (var visiteur in recupVisiteur)
                 {
-                    DropDownVisiteurs.Items.Add("");
-                    foreach (var visiteur in recupVisiteur)
-                    {
-                        DropDownVisiteurs.Items.Add(visiteur);
-                    }
+                    DropDownVisiteurs.Items.Add(visiteur);
                 }
+                
             }
             else
             {

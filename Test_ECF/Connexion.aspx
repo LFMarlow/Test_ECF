@@ -13,7 +13,7 @@
         <br />
         <asp:Label ID="LblMDPConnexion" runat="server" Text="Mot de Passe"></asp:Label>
         <br />
-        <asp:TextBox ID="TxtBoxMDPConnexion" placeholder="Mot de Passe" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TxtBoxMDPConnexion" placeholder="Mot de Passe" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="BtnConnexion" runat="server" Text="Connexion" OnClick="BtnConnexion_Click" />
