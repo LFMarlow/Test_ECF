@@ -82,8 +82,7 @@
                <asp:Panel ID="PnlEtapes" runat="server">
                </asp:Panel>
                <br />
-
-               <asp:CheckBox ID="CheckBoxVisibleClient" runat="server" Text='Recette visible uniquement par les "Clients"' OnCheckedChanged="CheckBox1_CheckedChanged" />
+               <asp:CheckBox ID="CheckBoxVisibleClient" runat="server" Text='Recette visible uniquement par les "Clients"' />
                <br/>
                <br />
                <asp:Button ID="BtnCreateRecipe" runat="server" Text="Créer une recettes" OnClick="BtnCreateRecipe_Click" />

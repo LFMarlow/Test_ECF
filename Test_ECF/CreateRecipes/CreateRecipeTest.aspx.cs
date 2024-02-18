@@ -37,8 +37,16 @@ namespace Test_ECF
                 //On insère dans la BDD les informations
                 Classes.DALTest_ECF objDal = new Classes.DALTest_ECF();
                 objDal.CreateRecipes(titleInit, urlInit, timeInit, timeReposInit, timePrepaInit, descripInit, allergenesInit, regimeInit, ingredientsInit, etapesInit, estPatient);
+                Alert.Show("Recette créer avec succès !");
+            }
+            catch (Exception ex)
+            {
+                Alert.Show("Impossible de créer la recette");
+            }
 
-                //Variable pour récupéré les données dans BDD
+            Response.Redirect("~/Mon-Compte.aspx");
+
+               /* //Variable pour récupéré les données dans BDD
                 String title = "";
                 String urlIMG = "";
                 String timeRecipe = "";
@@ -141,23 +149,16 @@ namespace Test_ECF
                         }
                     }   
                 }
-                Response.Redirect(title + ".aspx", false);
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+
+                Response.Redirect("~/MesRecettes.aspx");
+               */
         }
 
-        public void AddText(StreamWriter sw, string text)
+     /*   public void AddText(StreamWriter sw, string text)
         {
             UTF8Encoding utf8 = new UTF8Encoding();
             sw.BaseStream.Seek(0, SeekOrigin.Current);
             sw.WriteLine(text, 0, text.Length, utf8);
-        }
-
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
+        }*/
     }
 }
