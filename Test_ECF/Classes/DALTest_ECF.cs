@@ -12,7 +12,6 @@ namespace Test_ECF.Classes
     public class DALTest_ECF
     {
         private string chaineTest = ConfigurationManager.ConnectionStrings["ChaineBdd"].ConnectionString;
-        //private string chaineConnexion = "database=test_ecf; server=localhost; user id=Admin; pwd=65s?j72DZh%Kj[";
         MySqlConnection connexion;
         MySqlCommand command;
         MySqlDataReader reader;
@@ -76,7 +75,7 @@ namespace Test_ECF.Classes
         //Vérification si adresse mail déjà renseigné
         public Classes.Users VerifDoublonMailInscription(string prmMail)
         {
-            string verifDoublonMail = "SELECT (email) FROM utilisateur WHERE email =" + "'" + prmMail + "'";
+            string verifDoublonMail = "SELECT email FROM utilisateur WHERE email =" + "'" + prmMail + "'";
 
             Classes.Users objUsers = null;
             bool isConnected = false;
@@ -88,11 +87,14 @@ namespace Test_ECF.Classes
                 {
                     
                     command = new MySqlCommand(verifDoublonMail, connexion);
-                    reader = command.ExecuteReader();
-                    reader.Read();
                     objUsers = new Classes.Users();
+                    var result = command.ExecuteScalar();
 
-                    objUsers.email = Convert.ToString(reader["email"]);
+                    if (result != null)
+                    {
+                        objUsers.email = result.ToString();
+                    }
+                    
                 };
             }
             catch (Exception ex)
@@ -133,7 +135,7 @@ namespace Test_ECF.Classes
             {
                 //Erreur de récupération
                 objUsers = null;
-                MessageBox.Show("Adresse Email ou Mot de passe incorrecte", "Erreur d'authentification", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Alert.Show("Adresse Email ou Mot de passe incorrecte");
             }
             Deconnecter();
             return objUsers;
@@ -229,7 +231,7 @@ namespace Test_ECF.Classes
 
         public void CreateRecipes(string prmTitle, string prmImage, string prmTime, string prmTimeRepos, string prmTimePrepa, string prmDescription, string prmAllergenes, string prmRegime, string prmIngredients, string prmEtapes, bool prmEstPatient)
         {
-            String requete = "INSERT INTO recipes (titre, image, time, timeRepos, timePrepa, description, allergenes, regime, ingredients, etapes, estPatient) VALUES ('" + prmTitle.Replace("'","''") + "'," + "'" + prmImage + "'," + "'" + prmTime + "'," + "'" + prmTimeRepos + "'," + "'" + prmTimePrepa + "'," + "'" + prmDescription.Replace("'", "''") + "'," + "'" + prmAllergenes.Replace("'", "''") + "'," + "'" + prmRegime + "'," + "'" + prmIngredients.Replace("'", "''") + "'," + "'" + prmEtapes.Replace("'", "''") + "'" + "," + "'" + prmEstPatient + "'" + ")";
+            String requete = "INSERT INTO recipes (titre, image, time, timeRepos, timePrepa, description, allergenes, regime, ingredients, etapes, estPatient) VALUES ('" + prmTitle.Replace("'","''") + "'," + "'" + prmImage + "'," + "'" + prmTime + "'," + "'" + prmTimeRepos + "'," + "'" + prmTimePrepa + "'," + "'" + prmDescription.Replace("'", "''") + "'," + "'" + prmIngredients.Replace("'", "''") + "'," + "'" + prmRegime + "'," + "'" + prmIngredients.Replace("'", "''") + "'," + "'" + prmEtapes.Replace("'", "''") + "'" + "," + "'" + prmEstPatient + "'" + ")";
             bool isConnected = false;
             try
             {
@@ -445,7 +447,7 @@ namespace Test_ECF.Classes
 
         public List<String> RecupRecipesWithAllergenesUsers(string prmAllergenes)
         {
-            String requete = "SELECT titre FROM recipes WHERE allergenes = '" + prmAllergenes + "'";
+            String requete = "SELECT titre FROM recipes WHERE allergenes NOT LIKE '" + "%" + prmAllergenes + "%" + "'";
             bool isConnected = false;
             List<String> listAllRecipes = new List<String>();
 
@@ -635,8 +637,8 @@ namespace Test_ECF.Classes
                 if (isConnected)
                 {
                     command = new MySqlCommand(requete, connexion);
-                    reader = command.ExecuteReader();
-                    reader.Read();
+                   reader = command.ExecuteReader();
+                   reader.Read();
 
                     do
                     {
